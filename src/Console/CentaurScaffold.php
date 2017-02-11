@@ -55,7 +55,7 @@ class CentaurScaffold extends Command
         $centaurPath = dirname($centaurFilename);
 
         // Get the current application namespace
-        $this->namespace = str_replace('\\', '', config('repository.generator.rootNamespace', $this->getAppNamespace()));
+        $this->namespace = str_replace('\\', '', config('repository.generator.rootNamespace', \Illuminate\Container\Container::getInstance()->getNamespace()));
 
         // Check our destination directories
         if (!$removal) {
