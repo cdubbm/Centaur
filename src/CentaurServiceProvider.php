@@ -80,7 +80,7 @@ class CentaurServiceProvider extends ServiceProvider
     private function registerArtisanCommands()
     {
         // Register the Scaffold command
-        $this->app['centaur.scaffold'] = $this->app->share(function ($app) {
+        $this->app->singleton('centaur.scaffold', function ($app) {
             return new CentaurScaffold(
                 $app->make('files')
             );
@@ -88,7 +88,7 @@ class CentaurServiceProvider extends ServiceProvider
         $this->commands('centaur.scaffold');
 
         // Register the Spruce command
-        $this->app['centaur.spruce'] = $this->app->share(function ($app) {
+        $this->app->singleton('centaur.spruce', function ($app) {
             return new CentaurSpruce(
                 $app->make('files')
             );

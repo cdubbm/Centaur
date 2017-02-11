@@ -5,12 +5,9 @@ namespace Centaur\Console;
 use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Console\AppNamespaceDetectorTrait;
 
 class CentaurScaffold extends Command
 {
-    use AppNamespaceDetectorTrait;
-
     /**
      * The name and signature of the console command.
      *
@@ -58,7 +55,7 @@ class CentaurScaffold extends Command
         $centaurPath = dirname($centaurFilename);
 
         // Get the current application namespace
-        $this->namespace = str_replace('\\', '', $this->getAppNamespace());
+        $this->namespace = str_replace('\\', '', config('repository.generator.rootNamespace', $this->getAppNamespace()));
 
         // Check our destination directories
         if (!$removal) {
